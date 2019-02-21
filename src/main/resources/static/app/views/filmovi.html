@@ -1,0 +1,159 @@
+<div ng-controller="filmoviCtrl">
+
+	<h1>Filmovi</h1>
+
+
+	<!-- add form-->
+	<div class="form-row justify-content-start">
+		<div class="col-12 col-lg-6">
+			<form id="addForm" name="addForm" ng-model="addForm">
+
+				<div class="form-group">
+					<label for="naziv">Naziv</label> <input class="form-control"
+						id="naziv" name="naziv" ng-model="newFilm.naziv" required>
+					<span ng-show="addForm.naziv.$invalid && addForm.naziv.$dirty"
+						class="small text-danger" role="alert">*Obavezno polje</span>
+				</div>
+
+				<div class="form-group">
+					<label for="trajanje">Trajanje</label> <input class="form-control"
+						type="number" min="10" max="999" id="trajanje" name="trajanje"
+						ng-model="newFilm.trajanje">
+				</div>
+
+				<div class="form-group">
+					<label for="kategorija">Kategorija</label> <select
+						class="form-control" id="kategorija"
+						ng-model="newFilm.kategorijaId">
+						<option ng-repeat="k in kategorija" value="{{k.id}}">{{k.naziv}}</option>
+					</select>
+				</div>
+
+				<button ng-disabled="addForm.$invalid" ng-click="addFilm()"
+					type="button" class="btn btn-primary">Dodaj</button>
+
+			</form>
+		</div>
+	</div>
+	<!-- end of add form -->
+
+	<!-- search form -->
+	<div class="row justify-content-center">
+
+		<form class="col-12 col-lg-6" name="searchForm" id="searchForm"
+			ng-model="searchForm">
+
+			<div class="row">
+				<div class="form-row col-11">
+
+					<div class="form-group col-4">
+						<label>Naziv</label> <input type="text"
+							ng-model="searchParams.naziv" class="form-control"
+							placeholder="Naziv">
+					</div>
+					<div class="form-group">
+						<label>Trajanje</label> <input type="number"
+							ng-model="searchParams.trajanje" class="form-control"
+							placeholder="Trajanje">
+					</div>
+
+					<div class="col col-1">
+						<button type="button" class="btn btn-info"
+							ng-click="searchFilmovi()">
+							<span class="glyphicon glyphicon-search"></span> Search
+						</button>
+					</div>
+
+				</div>
+			</div>
+		</form>
+	</div>
+	<!-- end of search form -->
+
+
+	<div id="pageButtons">
+		<div class=" btn-group">
+			<button class="btn btn-sm btn-primary" ng-click="previous()"
+				ng-disabled="pageNum == 0">Prethodna</button>
+			<button class="btn btn-sm btn-primary" ng-click="next()"
+				ng-disabled="pageNum == totalPages - 1">Sledeća</button>
+		</div>
+	</div>
+
+	<!-- table -->
+	<div class="row">
+		<table class="table table-striped col-12">
+
+			<thead>
+				<tr>
+					<th>Naziv</th>
+					<th>Trajanje</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr ng-repeat="f in filmovi">
+					<td>{{f.naziv}}</td>
+					<td>{{f.trajanje}}</td>
+					<td><button class="btn btn-sm btn-warning"
+							ng-click="editFilm(f.id)" type="button">Izmeni</button></td>
+					<td><button class="btn btn-sm btn-danger"
+							ng-click="deleteFilm(f.id)" type="button">Obrisi</button></td>
+					<!-- <td><button ng-disabled="f.atribut" type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#f-modal"
+						 ng-click="selectedFilm(f)">Funkcija</button></td> -->
+				</tr>
+			</tbody>
+
+		</table>
+	</div>
+	<!-- end of table -->
+
+
+	<!-- modal -->
+	<div class="modal fade" id="modal" role="dialog" tabindex="-1">
+		<div class="modal-dialog">
+
+			<!-- modal content-->
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<h4 class="modal-title">Naslov</h4>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<!-- edit form-->
+				<div class="modal-body">
+					<form name="modalForm" ng-model="modalForm" id="modalForm">
+
+						<div class="form-group">
+							<label for="nesto"></label> <input type="text"
+								class="form-control" id="nesto" ng-model="nesto"
+								placeholder="nesto">
+						</div>
+						<!-- ... -->
+
+
+						<div class="col col-1">
+							<button type="button" class="btn btn-info" ng-click="funkcija()">
+								<span class="glyphicon glyphicon-search"></span> Funkcija
+							</button>
+						</div>
+
+					</form>
+				</div>
+				<!-- end of edit form -->
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Close</button>
+					<!-- <button ng-click="funkcija()" type="button" class="btn btn-primary">Funkcija</button> -->
+				</div>
+			</div>
+			<!-- end of modal content -->
+
+		</div>
+	</div>
+	<!-- end of modal -->
+</div>

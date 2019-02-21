@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- CSS -->
+<link rel="stylesheet" href="/assets/css/bootstrap.css">
+<link rel="stylesheet" href="/app/css/style.css">
+
+<!-- Modules and Providers -->
+<script src="/assets/js/angular.js"></script>
+<script type="text/javascript" src="/assets/js/angular-route.js"></script>
+<script src="/app/js/app.js"></script>
+
+<!-- Configuration JS files -->
+<script src="/app/js/config/routes.js"></script>
+
+<!--  Controllers -->
+<script src="/app/js/controllers/editAutomobilCtrl.js"></script>
+<script src="/app/js/controllers/automobiliCtrl.js"></script>
+<script src="/app/js/controllers.js"></script>
+
+<!-- Services -->
+<script src="/app/js/services/kompanijeService.js"></script>
+<script src="/app/js/services/automobiliService.js"></script>
+<script src="/app/js/services.js"></script>
+
+
+</head>
+
+<body>
+	<div ng-app="App">
+
+		<div>
+			<nav class="navbar navbar-expand fixed-top navbar-dark bg-dark">
+				<a class="navbar-brand text-light text-uppercase" href="/#!/"> <span
+					class="h2">JWD</span>
+				</a>
+
+				<button class="navbar-toggler" type="button" data-toggle="collapse"
+					data-target="#myNavbar">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+
+				<div class="collapse navbar-collapse justify-content-start"
+					id="myNavbar">
+					<ul class="navbar-nav">
+						<li class="nav-item"><a class="nav-link"
+							href="/#!/kategorije">Kategorije</a></li>
+						<li class="nav-item"><a class="nav-link" href="/#!/knjige">Knjige</a>
+						</li>
+					</ul>
+				</div>
+
+			</nav>
+		</div>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div ng-view></div>
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+
+	<!-- Dependencies -->
+	<script src="/assets/js/jquery-3.2.1.min.js"></script>
+	<script src="/assets/js/bootstrap.js"></script>
+
+</body>
+</html>

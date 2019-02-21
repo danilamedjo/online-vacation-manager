@@ -1,0 +1,26 @@
+@font-face {
+	font-family: Montserrat;
+	src: url(/assets/fonts/Montserrat-Regular.ttf)
+}
+
+* {
+	font-family: 'Montserrat', sans-serif;
+}
+
+form {
+	padding: 1cm 0cm 1cm 0cm;
+}
+
+div[ng-view] {
+	margin-top: 50px;
+}
+
+div #pageButtons {
+	display: flex;
+	justify-content: flex-end;
+}
+
+table {
+	table-layout: fixed;
+	height: 50vh;
+}

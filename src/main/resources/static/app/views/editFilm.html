@@ -1,0 +1,33 @@
+<div ng-controller="editFilmCtrl">
+
+    <h2>Edit <span> {{oldFilm.naziv}} </span></h2>
+
+    <div class="form-row justify-content-start">
+
+        <form class="col-12 col-lg-6" id="editForm" name="editForm" ng-model="editForm">
+
+            <div class="form-group">
+                <label for="naziv">Naziv</label>
+                <input ng-model="oldFilm.naziv" value="{{oldFilm.naziv}}" type="text" class="form-control" name="naziv"
+                    id="naziv" required>
+                <span ng-show="editForm.naziv.$invalid && editForm.naziv.$dirty" class="small text-danger" role="alert">*Obavezno
+                    polje</span>
+            </div>
+            <div class="form-group">
+                <label for="trajanje">Trajanje</label>
+                <input ng-model="oldFilm.trajanje" value="{{oldFilm.trajanje}}" type="text" class="form-control" id="trajanje">
+            </div>
+            <div class="form-group">
+                <label for="kategorija">Kategorija</label>
+                <select ng-model="oldFilm.kategorijaId" class="form-control" id="kategorija">
+                    <option ng-repeat="k in kategorija" value="{{k.id}}">{{k.naziv}}</option>
+                </select>
+            </div>
+
+            <button ng-disabled="editForm.$invalid" ng-click="editFilm()" type="button" class="btn btn-primary">Izmeni</button>
+
+        </form>
+
+    </div>
+
+</div>
