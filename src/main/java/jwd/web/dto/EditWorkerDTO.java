@@ -2,19 +2,12 @@ package jwd.web.dto;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+public class EditWorkerDTO {
 
-public class WorkerDTO {
-
+    private String identityNumber;
 
     private Long id;
-
-    @Size(min = 5, max = 5)
-    private String identityNumber;
 
     @NotBlank
     private String fullName;
@@ -23,8 +16,6 @@ public class WorkerDTO {
     private String email;
 
     private Integer yearsOfService;
-
-    private Integer freeDays;
 
     private Long departmentId;
 
@@ -36,14 +27,6 @@ public class WorkerDTO {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getIdentityNumber() {
-        return identityNumber;
-    }
-
-    public void setIdentityNumber(String identityNumber) {
-        this.identityNumber = identityNumber;
     }
 
     public String getFullName() {
@@ -62,14 +45,6 @@ public class WorkerDTO {
         this.email = email;
     }
 
-    public Integer getYearsOfService() {
-        return yearsOfService;
-    }
-
-    public void setYearsOfService(Integer yearsOfService) {
-        this.yearsOfService = yearsOfService;
-    }
-
     public Long getDepartmentId() {
         return departmentId;
     }
@@ -86,11 +61,19 @@ public class WorkerDTO {
         this.departmentName = departmentName;
     }
 
-    public Integer getFreeDays() {
-        return freeDays;
+    public Integer getYearsOfService() {
+        return yearsOfService;
     }
 
-    public void setFreeDays(Integer freeDays) {
-        this.freeDays = freeDays;
+    public void setYearsOfService(Integer yearsOfService) {
+        this.yearsOfService = yearsOfService;
+    }
+
+    public String getIdentityNumber() {
+        return identityNumber;
+    }
+
+    public void setIdentityNumber(String identityNumber) {
+        this.identityNumber = identityNumber;
     }
 }

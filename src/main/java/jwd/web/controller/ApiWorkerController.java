@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -54,6 +55,45 @@ public class ApiWorkerController {
             return new ResponseEntity<>(toDTO.convert(worker), HttpStatus.OK);
         }
     }
+
+    @PostMapping(consumes = "application/json")
+    public ResponseEntity<WorkerDTO> add(
+            @Validated @RequestBody WorkerDTO workerDTO){
+
+        Worker workerToAdd = toWorker.convert(workerDTO);
+
+        Worker persisted = workerService.save(workerToAdd);
+
+        return new ResponseEntity<>(toDTO.convert(persisted), HttpStatus.OK);
+
+    }
+
+    @PutMapping(value = "/{id}", consumes = "application/json")
+    public ResponseEntity<WorkerDTO> edit(
+            @PathVariable Long id,
+            @Validated @RequestBody WorkerDTO workerDTO){
+
+
+            if (workerDTO.getId().equals(id)) {
+
+                Worker worker = toWorker.convert(workerDTO);
+
+                if(worker!=null) {
+
+                    Worker changed = workerService.save(worker);
+
+                    return new ResponseEntity<>(toDTO.convert(changed), HttpStatus.OK);
+                }
+            }
+
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
+    }
+
+
+    
+
+
 
 
 
