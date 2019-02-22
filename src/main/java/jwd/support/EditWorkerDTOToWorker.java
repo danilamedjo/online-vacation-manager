@@ -7,7 +7,9 @@ import jwd.service.WorkerService;
 import jwd.web.dto.EditWorkerDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
 
+@Component
 public class EditWorkerDTOToWorker implements Converter<EditWorkerDTO, Worker> {
 
     @Autowired
@@ -22,7 +24,7 @@ public class EditWorkerDTOToWorker implements Converter<EditWorkerDTO, Worker> {
         Worker worker = workerService.findOne(editWorkerDTO.getId());
         Department department = departmentService.findOne(editWorkerDTO.getDepartmentId());
 
-        if(worker != null && department != null) {
+        if (worker != null && department != null) {
 
             worker.setDepartment(department);
             worker.setFullName(editWorkerDTO.getFullName());
@@ -31,11 +33,13 @@ public class EditWorkerDTOToWorker implements Converter<EditWorkerDTO, Worker> {
             worker.setIdentityNumber(editWorkerDTO.getIdentityNumber());
 
 
-        }else{
+        } else {
             throw new IllegalStateException("Trying to edit non-existent entity");
         }
 
 
         return worker;
     }
+
+
 }

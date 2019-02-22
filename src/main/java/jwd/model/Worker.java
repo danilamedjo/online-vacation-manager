@@ -18,7 +18,7 @@ public class Worker extends BaseEntity{
 
     private Integer yearsOfService;
 
-    private Integer freeDays;
+    private Integer freeDays = 20;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "department_id")
@@ -66,6 +66,8 @@ public class Worker extends BaseEntity{
     }
 
     public void setYearsOfService(Integer yearsOfService) {
+
+
         this.yearsOfService = yearsOfService;
     }
 

@@ -75,23 +75,28 @@ public class ApiWorkerController {
 
 
             if (workerDTO.getId().equals(id)) {
-
                 Worker worker = toWorker.convert(workerDTO);
 
                 if(worker!=null) {
-
                     Worker changed = workerService.save(worker);
-
                     return new ResponseEntity<>(toDTO.convert(changed), HttpStatus.OK);
                 }
             }
 
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-
     }
 
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<WorkerDTO> delete(@PathVariable Long id){
 
-    
+        Worker worker = workerService.remove(id);
+
+        if(worker != null){
+            return new ResponseEntity<>(toDTO.convert(worker), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
 
 
 
