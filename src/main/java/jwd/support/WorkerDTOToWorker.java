@@ -43,7 +43,7 @@ public class WorkerDTOToWorker implements Converter<WorkerDTO, Worker> {
             }
 
             worker.setDepartment(department);
-
+            worker.setIdentityNumber(dto.getIdentityNumber());
             worker.setEmail(dto.getEmail());
             worker.setYearsOfService(dto.getYearsOfService());
             worker.setFullName(dto.getFullName());

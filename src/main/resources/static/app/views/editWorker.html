@@ -1,0 +1,37 @@
+<div ng-controller="editWorkerCtrl">
+
+    <h2>Edit <span> {{oldWorker.fullName}} </span></h2>
+
+    <div class="form-row justify-content-start">
+
+        <form class="col-12 col-lg-6" id="editForm" name="editForm" ng-model="editForm">
+
+            <div class="form-group">
+                <label for="identityNumber">Id</label>
+                <input ng-model="oldWorker.identityNumber" value="{{oldWorker.identityNumber}}" type="text" class="form-control"
+                    id="identityNumber">
+            </div>
+            <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input ng-model="oldWorker.fullName" value="{{oldWorker.fullName}}" type="text" class="form-control"
+                    name="fullName" id="fullName" required>
+                <span ng-show="editForm.fullName.$invalid && editForm.fullName.$dirty" class="small text-danger"
+                    role="alert">*Obavezno
+                    polje</span>
+            </div>
+
+            <div class="form-group">
+                <label for="department">Department</label>
+                <select ng-model="oldWorker.departmentId" class="form-control" id="department">
+                    <option ng-repeat="d in departments" value="{{d.id}}">{{d.name}}</option>
+                </select>
+            </div>
+
+            <button ng-disabled="editForm.$invalid" ng-click="editWorker()" type="button"
+                class="btn btn-primary">Izmeni</button>
+
+        </form>
+
+    </div>
+
+</div>

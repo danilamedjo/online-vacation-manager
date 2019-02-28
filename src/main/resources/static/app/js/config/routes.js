@@ -1,13 +1,13 @@
-app.config(function ($routeProvider) {
+vacationApp.config(function ($routeProvider) {
     $routeProvider
     .when('/',{
         templateUrl: '/app/views/home.html'
     })
-    .when('/filmovi',{
-        templateUrl: '/app/views/filmovi.html'
+    .when('/workers',{
+        templateUrl: '/app/views/workers.html'
     })
-    .when('/filmovi/edit/:aid',{
-        templateUrl: '/app/views/editFilmovi.html'
+    .when('/workers/edit/:wid',{
+        templateUrl: '/app/views/editWorker.html'
     })
     .otherwise({
         redirectTo: '/'

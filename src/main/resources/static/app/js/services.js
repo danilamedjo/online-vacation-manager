@@ -1,2 +1,2 @@
-app.service('filmService', filmService);
-app.service('kategorijaService', kategorijaService);
+vacationApp.service('workerService', workerService);
+vacationApp.service('departmentService', departmentService);

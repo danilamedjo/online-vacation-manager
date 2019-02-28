@@ -1,0 +1,168 @@
+<div ng-controller="workersCtrl">
+
+	<h1>Workers</h1>
+
+
+	<!-- add form-->
+	<div class="form-row justify-content-start">
+		<div class="col-12 col-lg-6">
+			<form id="addForm" name="addForm" ng-model="addForm">
+
+				<div class="form-group">
+					<label for="identityNumber">Id</label> <input class="form-control" id="identityNumber"
+						name="identityNumber" ng-model="newWorker.identityNumber" maxlength="5" minlength="5" required>
+					<span ng-show="addForm.identityNumber.$invalid && addForm.identityNumber.$dirty"
+						class="small text-danger" role="alert">*Obavezno polje</span>
+				</div>
+
+				<div class="form-group">
+					<label for="fullName">Full Name</label> <input class="form-control" type="text" id="fullName"
+						name="fullName" ng-model="newWorker.fullName">
+				</div>
+
+				<div class="form-group">
+					<label for="department">Department</label> <select class="form-control" id="department"
+						ng-model="newWorker.departmentId">
+						<option ng-repeat="d in departments" value="{{d.id}}">{{d.name}}</option>
+					</select>
+				</div>
+
+				<button ng-disabled="addForm.$invalid" ng-click="addWorker()" type="button"
+					class="btn btn-primary">Add</button>
+
+			</form>
+		</div>
+	</div>
+	<!-- end of add form -->
+
+	<!-- search form -->
+	<div class="row justify-content-center">
+
+		<form class="col-12 col-lg-6" name="searchForm" id="searchForm" ng-model="searchForm">
+
+			<div class="row">
+				<div class="form-row col-11">
+
+					<div class="form-group col-4">
+						<label>Id</label> <input type="text" maxlength="5" ng-model="searchParams.identityNumber"
+							class="form-control" placeholder="Id">
+					</div>
+					<div class="form-group col-4">
+						<label>Full Name</label> <input type="text" ng-model="searchParams.fullName"
+							class="form-control" placeholder="Full Name">
+					</div>
+					<div class="form-group col-4">
+						<label>Department</label>
+						<select class="form-control" id="department" ng-model="searchParams.departmentId"
+							placeholder="Department">
+							<option ng-repeat="d in departments" value="{{d.id}}">{{d.name}}</option>
+						</select>
+					</div>
+
+
+					<div class="col col-1">
+						<button type="button" class="btn btn-info" ng-click="searchWorkers()">
+							<span class="glyphicon glyphicon-search"></span> Search
+						</button>
+					</div>
+				</div>
+
+			</div>
+		</form>
+	</div>
+	<!-- end of search form -->
+
+
+	<div id="navTableButtons">
+		<div class=" btn-group">
+			<button class="btn btn-sm btn-primary" ng-click="previous()" ng-disabled="pageNum == 0">Previous</button>
+			<button class="btn btn-sm btn-primary" ng-click="next()"
+				ng-disabled="pageNum == totalPages - 1">Next</button>
+
+		</div>
+	</div>
+
+
+
+	<!-- table -->
+	<div class="row">
+		<table class="table table-striped col-12">
+
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Full Name</th>
+					<th>E-mail</th>
+					<th>Free days</th>
+					<th>Department</th>
+					<th colspan="3">Action</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr ng-repeat="w in workers">
+					<td>{{w.identityNumber}}</td>
+					<td>{{w.fullName}}</td>
+					<td>{{w.email}}</td>
+					<td>{{w.freeDays}}</td>
+					<td>{{w.departmentName}}</td>
+					<td><button class="btn btn-sm btn-warning" ng-click="editWorker(w.id)" type="button">Edit</button>
+					</td>
+					<td><button class="btn btn-sm btn-danger" ng-click="deleteWorker(w.id)"
+							type="button">Delete</button>
+					</td>
+					<!-- <td><button ng-disabled="w.atribut" type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#w-modal"
+						 ng-click="selectedWorker(w)">Funkcija</button></td> -->
+				</tr>
+			</tbody>
+
+		</table>
+	</div>
+	<!-- end of table -->
+
+
+	<!-- modal -->
+	<div class="modal fade" id="modal" role="dialog" tabindex="-1">
+		<div class="modal-dialog">
+
+			<!-- modal content-->
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<h4 class="modal-title">Naslov</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<!-- edit form-->
+				<div class="modal-body">
+					<form name="modalForm" ng-model="modalForm" id="modalForm">
+
+						<div class="form-group">
+							<label for="nesto"></label> <input type="text" class="form-control" id="nesto"
+								ng-model="nesto" placeholder="nesto">
+						</div>
+						<!-- ... -->
+
+
+						<div class="col col-1">
+							<button type="button" class="btn btn-info" ng-click="funkcija()">
+								<span class="glyphicon glyphicon-search"></span> Funkcija
+							</button>
+						</div>
+
+					</form>
+				</div>
+				<!-- end of edit form -->
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<!-- <button ng-click="funkcija()" type="button" class="btn btn-primary">Funkcija</button> -->
+				</div>
+			</div>
+			<!-- end of modal content -->
+
+		</div>
+	</div>
+	<!-- end of modal -->
+</div>

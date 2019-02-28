@@ -17,8 +17,9 @@ public class WorkerToWorkerDTO implements Converter<Worker, WorkerDTO> {
         WorkerDTO dto = new WorkerDTO();
 
         dto.setId(worker.getId());
-        dto.setIdentityNumber(dto.getIdentityNumber());
+        dto.setIdentityNumber(worker.getIdentityNumber());
         dto.setEmail(worker.getEmail());
+        dto.setFreeDays(worker.getFreeDays());
         dto.setFullName(worker.getFullName());
         dto.setYearsOfService(worker.getYearsOfService());
         dto.setDepartmentId(worker.getDepartment().getId());

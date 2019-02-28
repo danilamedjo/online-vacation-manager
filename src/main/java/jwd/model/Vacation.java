@@ -2,15 +2,18 @@ package jwd.model;
 
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "tbl_vacation")
 public class Vacation extends BaseEntity{
 
     @Column(nullable = false)
-    private String startDate;
+    @Temporal(TemporalType.DATE)
+    private Date startDate;
 
-    private String endDate;
+    @Temporal(TemporalType.DATE)
+    private Date endDate;
 
     private Integer workingDays;
 
@@ -21,25 +24,25 @@ public class Vacation extends BaseEntity{
     public Vacation(){
     }
 
-    public Vacation(String startDate, String endDate, Integer workingDays) {
+    public Vacation(Date startDate, Date endDate, Integer workingDays) {
         this.startDate = startDate;
         this.endDate = endDate;
         this.workingDays = workingDays;
     }
 
-    public String getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(String startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
-    public String getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(String endDate) {
+    public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
 

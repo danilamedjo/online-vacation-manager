@@ -15,12 +15,11 @@ div[ng-view] {
 	margin-top: 50px;
 }
 
-div #pageButtons {
+div #navTableButtons {
 	display: flex;
 	justify-content: flex-end;
 }
 
 table {
-	table-layout: fixed;
 	height: 50vh;
 }

@@ -7,6 +7,7 @@ import jwd.support.WorkerToWorkerDTO;
 import jwd.web.dto.WorkerDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -42,7 +43,12 @@ public class ApiWorkerController {
         }else {
             workers = workerService.findAll(pageNum, pageSize);
         }
-        return new ResponseEntity<>(toDTO.convert(workers.getContent()), HttpStatus.OK);
+
+        HttpHeaders headers = new HttpHeaders();
+
+        headers.add("totalPages", Integer.toString(workers.getTotalPages()));
+
+        return new ResponseEntity<>(toDTO.convert(workers.getContent()), headers, HttpStatus.OK);
     }
 
     @GetMapping(value = "/{id}")
